@@ -1,44 +1,37 @@
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class AmazonTest {
-    @Test
-    public void testOpenAmazon() {
-        ChromeDriver driver = new ChromeDriver();
+    WebDriver driver;
+    @Before
+    public void setUpAmazon(){
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(AmazonPage.URL);
-
+    }
+    @Test
+    public void testOpenAmazon() {
         By copyright = By.xpath(AmazonPage.COPYRIGHT);
         WebElement COPYRIGHT = driver.findElement(copyright);
         Assert.assertEquals(AmazonPage.TEXT, COPYRIGHT.getText());
-
-        driver.quit();
     }
     @Test
     public void testOpenAmazonCart(){
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(AmazonPage.URL);
-
         By btnCart = By.xpath(AmazonPage.BTN_CART);
         WebElement BTN_CART_WEB = driver.findElement(btnCart);
         BTN_CART_WEB.click();
         By titleCartText = By.xpath(AmazonPage.TITLE_CART_TEXT);
         WebElement TITLE_CART_TEXT_WEB = driver.findElement(titleCartText);
-
         Assert.assertEquals(AmazonPage.TITLE_CART_TEXT_EXPECTED, TITLE_CART_TEXT_WEB.getText());
-
-        driver.quit();
     }
     @Test
     public void testOpenAmazonLoginForm() {
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(AmazonPage.URL);
-
         By btnCart = By.xpath(AmazonPage.BTN_CART);
         WebElement BTN_CART_WEB = driver.findElement(btnCart);
         BTN_CART_WEB.click();
@@ -51,15 +44,9 @@ public class AmazonTest {
         WebElement TITLE_SIGN_IN_TEXT_WEB = driver.findElement(titleSingIn);
 
         Assert.assertEquals(AmazonPage.TITLE_SIGN_IN_TEXT_EXPECTED, TITLE_SIGN_IN_TEXT_WEB.getText());
-
-        driver.quit();
     }
     @Test
     public void testOpenAmazonLoginFormWithEmptyCredentials() {
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(AmazonPage.URL);
-
         By btnCart = By.xpath(AmazonPage.BTN_CART);
         WebElement BTN_CART_WEB = driver.findElement(btnCart);
         BTN_CART_WEB.click();
@@ -76,7 +63,9 @@ public class AmazonTest {
         WebElement ERROR_SIGN_IN_WEB = driver.findElement(errorSignIn);
 
         Assert.assertEquals(AmazonPage.ERROR_MSG_SIGN_IN_TEXT, ERROR_SIGN_IN_WEB.getText());
-
+    }
+    @After
+    public void closeDownAmazon(){
         driver.quit();
     }
 }
