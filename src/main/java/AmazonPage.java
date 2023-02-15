@@ -8,4 +8,9 @@ public class AmazonPage {
     public static final String BTN_SIGN_IN = "//span[contains(text(),'Sign in to your account')]";
     public static final String TITLE_SIGN_IN_TEXT = "//h1[contains(text(),'Sign in')]";
     public static final String TITLE_SIGN_IN_TEXT_EXPECTED = "Sign in";
+
+    public static final String BTN_CONTINUE_SIGN_IN = "//span[@id='continue']";
+    public static final String ERROR_MSG_SIGN_IN = "//*[@id='auth-email-missing-alert']";
+    public static final String ERROR_MSG_SIGN_IN_TEXT = "Enter your email or mobile phone number";
+
 }
