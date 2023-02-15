@@ -33,4 +33,25 @@ public class AmazonTest {
 
         driver.quit();
     }
+    @Test
+    public void testOpenAmazonLoginForm() {
+        ChromeDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get(AmazonPage.URL);
+
+        By btnCart = By.xpath(AmazonPage.BTN_CART);
+        WebElement BTN_CART_WEB = driver.findElement(btnCart);
+        BTN_CART_WEB.click();
+
+        By btnSignIn = By.xpath(AmazonPage.BTN_SIGN_IN);
+        WebElement BTN_SIGN_IN_WEB = driver.findElement(btnSignIn);
+        BTN_SIGN_IN_WEB.click();
+
+        By titleSingIn = By.xpath(AmazonPage.TITLE_SIGN_IN_TEXT);
+        WebElement TITLE_SIGN_IN_TEXT_WEB = driver.findElement(titleSingIn);
+
+        Assert.assertEquals(AmazonPage.TITLE_SIGN_IN_TEXT_EXPECTED, TITLE_SIGN_IN_TEXT_WEB.getText());
+
+        driver.quit();
+    }
 }
