@@ -10,4 +10,6 @@ public class OnLinerPage {
     public static final String ERROR_MSG_LOGIN_EXPECTED = "Укажите ник или e-mail";
     public static final String ERROR_MSG_PASSWORD = "//div[contains(text(), 'Укажите пароль')]";
     public static final String ERROR_MSG_PASSWORD_EXPECTED = "Укажите пароль";
+    public static final String LOGIN_PLACEHOLDER = "//input[@placeholder='Ник или e-mail']";
+    public static final String ENTERING_EMAIL = "testRandom@gmail.com";
 }

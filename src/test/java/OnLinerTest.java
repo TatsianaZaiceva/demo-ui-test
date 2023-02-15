@@ -55,10 +55,35 @@ public class OnLinerTest {
 
         WebElement LOGIN_ERROR_Element = driver.findElement(By.xpath(OnLinerPage.ERROR_MSG_LOGIN));
         Assert.assertEquals(OnLinerPage.ERROR_MSG_LOGIN_EXPECTED, LOGIN_ERROR_Element.getText());
+
         WebElement PASSWORD_ERROR_Element = driver.findElement(By.xpath(OnLinerPage.ERROR_MSG_PASSWORD));
         Assert.assertEquals(OnLinerPage.ERROR_MSG_PASSWORD_EXPECTED, PASSWORD_ERROR_Element.getText());
+
         driver.quit();
-
     }
+    @Test
+    public void testOnLinerLoginFormWithEmptyPassword() {
+        ChromeDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get(OnLinerPage.URL);
 
+        By btnEnter = By.xpath(OnLinerPage.BTN_ENTER);
+        WebElement BTN_ENTER_WEB = driver.findElement(btnEnter);
+        BTN_ENTER_WEB.click();
+
+        By inputLogin = By.xpath(OnLinerPage.LOGIN_PLACEHOLDER);
+        WebElement INPUT_LOGIN_WEB = driver.findElement(inputLogin);
+        INPUT_LOGIN_WEB.sendKeys(OnLinerPage.ENTERING_EMAIL);
+
+        By btnAuthorization = By.xpath(OnLinerPage.BTN_AUTH);
+        WebElement BTN_AUTH_WEB = driver.findElement(btnAuthorization);
+        BTN_AUTH_WEB.click();
+
+        new WebDriverWait(driver,Duration.ofSeconds(7)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(OnLinerPage.ERROR_MSG_PASSWORD)));
+
+        WebElement PASSWORD_ERROR_Element = driver.findElement(By.xpath(OnLinerPage.ERROR_MSG_PASSWORD));
+        Assert.assertEquals(OnLinerPage.ERROR_MSG_PASSWORD_EXPECTED, PASSWORD_ERROR_Element.getText());
+
+        driver.quit();
+    }
 }
